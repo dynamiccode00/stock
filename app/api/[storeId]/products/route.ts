@@ -12,7 +12,7 @@ export async function POST(
 
     const body = await req.json();
 
-    const { name, price, stockCount } = body;
+    const { name, price, stockQuantity } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -21,8 +21,8 @@ export async function POST(
     if (!name) {
       return new NextResponse("Name is required", { status: 400 });
     }
-    if (!stockCount) {
-      return new NextResponse("stockCount id is required", { status: 400 });
+    if (!stockQuantity) {
+      return new NextResponse("stockQuantity id is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -44,7 +44,7 @@ export async function POST(
       data: {
         name,
         price,
-        stockCount,
+        stockQuantity,
         storeId: params.storeId,
       },
     });

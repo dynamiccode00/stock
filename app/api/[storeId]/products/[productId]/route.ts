@@ -74,7 +74,7 @@ export async function PATCH(
 
     const body = await req.json();
 
-    const { name, price, stockCount } = body;
+    const { name, price, stockQuantity } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -83,8 +83,8 @@ export async function PATCH(
     if (!name) {
       return new NextResponse("Name is required", { status: 400 });
     }
-    if (!stockCount) {
-      return new NextResponse("stockCount id is required", { status: 400 });
+    if (!stockQuantity) {
+      return new NextResponse("stockQuantity id is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -109,7 +109,7 @@ export async function PATCH(
       data: {
         name,
         price,
-        stockCount
+        stockQuantity
       },
     });
 
