@@ -102,7 +102,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    await prismadb.product.update({
+    const product = await prismadb.product.update({
       where: {
         id: params.productId
       },
@@ -113,11 +113,6 @@ export async function PATCH(
       },
     });
 
-    const product = await prismadb.product.update({
-      where: {
-        id: params.productId
-      },
-    })
   
     return NextResponse.json(product);
   } catch (error) {
