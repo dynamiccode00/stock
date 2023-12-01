@@ -31,9 +31,9 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({
       </div>
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
-      <Heading title="API" description="API Calls for Products" />
+      {/* <Heading title="API" description="API Calls for Products" />
       <Separator />
-      <ApiList entityName="products" entityIdName="productId" />
+      <ApiList entityName="products" entityIdName="productId" /> */}
     </>
   );
 };
