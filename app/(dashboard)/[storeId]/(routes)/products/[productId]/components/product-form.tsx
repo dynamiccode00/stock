@@ -157,9 +157,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               name="stockQuantity"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price</FormLabel>
+                  <FormLabel>stockQuantity</FormLabel>
                   <FormControl>
-                    <Input type="number" disabled={loading} placeholder="9.99" {...field} />
+                    <Input type="number" disabled={loading} placeholder="100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
