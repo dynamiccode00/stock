@@ -19,6 +19,7 @@ import {
 import { ProductColumn } from "./columns";
 import prismadb from "@/lib/prismadb";
 import { myAction } from "@/actions/sell";
+import { ro } from "date-fns/locale";
 
 interface CellActionProps {
   data: ProductColumn;
@@ -49,6 +50,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     let ans = await myAction(params.storeId,data.id)
     if (ans == 'success') {
       toast.success("Product sold.");
+      router.refresh()
     }else{
       toast.success("something went Wrong");
     }
