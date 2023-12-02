@@ -6,7 +6,7 @@ import { formatter } from "@/lib/utils";
 import { ProductsClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
 
-const ProductsPage = async ({
+const SellerPage = async ({
   params
 }: {
   params: { storeId: string }
@@ -37,4 +37,4 @@ const ProductsPage = async ({
   );
 };
 
-export default ProductsPage;
+export default SellerPage;
