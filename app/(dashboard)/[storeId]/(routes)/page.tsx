@@ -17,6 +17,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
   params
 }) => {
   const stockCount = await getStockCount(params.storeId);
+  const graphRevenue = await getGraphRevenue(params.storeId);
 
   return (
     <div className="flex-col">
@@ -34,6 +35,14 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
             </CardContent>
           </Card>
         </div>
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview data={graphRevenue} />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

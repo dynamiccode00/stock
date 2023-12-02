@@ -15,17 +15,42 @@ model Store {
   products  Product[] @relation("StoreToProduct")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  Sell      Sell[] @relation("StoreToSell")
 }
 
 model Product {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  storeId       String // Foreign Key to Store
-  store         Store    @relation("StoreToProduct", fields: [storeId], references: [id])
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  storeId       String
+  store         Store      @relation("StoreToProduct", fields: [storeId], references: [id])
   name          String
   price         Int
   stockQuantity Int
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  SellItem      SellItem[]
 
   @@index([storeId])
+}
+
+model Sell {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  storeId   String
+  store     Store      @relation("StoreToSell", fields: [storeId], references: [id])
+  sellItems SellItem[] // Relation to sellItem model
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([storeId])
+}
+
+// Intermediary for a many-to-many relationship
+model SellItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  sellId    String  @db.ObjectId
+  sell      Sell    @relation(fields: [sellId], references: [id])
+  productId String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([sellId])
+  @@index([productId])
 }
