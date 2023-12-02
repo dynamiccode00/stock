@@ -18,6 +18,7 @@ import {
 
 import { ProductColumn } from "./columns";
 import prismadb from "@/lib/prismadb";
+import { myAction } from "@/actions/sell";
 
 interface CellActionProps {
   data: ProductColumn;
@@ -44,48 +45,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   };
   
   const onSell = async () => {
-    try {
-      setLoading(true)
-      await prismadb.sell.create({
-        data: {
-          storeId: params.storeId,
-          sellItems:{
-            create:{
-              product: {
-                connect: {
-                  id: data.id
-                }
-              }
-            }
-          }
-        }
-      })
-      const Oproduct = await prismadb.product.findUnique({
-        where: {
-          id: data.id
-        },
-      });
-      if (Oproduct) {
-        await prismadb.product.update({
-          where: {
-            id: data.id
-          },
-          data: {
-            stockQuantity: Oproduct?.stockQuantity - 1
-          },
-        });
-      }
-      toast.success("SOLD");
-      router.refresh()
-    } catch (error) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
-      toast.success("Something Went Wrong");
-    } finally{
-      setLoading(false)
+    setLoading(true)
+    let ans = await myAction(params.storeId,data.id)
+    if (ans == 'success') {
+      toast.success("Product sold.");
+    }else{
+      toast.success("something went Wrong");
     }
-
+    setLoading(false)
   }
 
   return (
