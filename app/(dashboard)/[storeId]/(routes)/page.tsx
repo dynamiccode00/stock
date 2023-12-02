@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
+import { getGraphRevenue } from "@/actions/get-graph-revenue";
 
 interface DashboardPageProps {
   params: {
