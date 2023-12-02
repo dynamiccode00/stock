@@ -43,8 +43,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     }
   };
   
-  const onSell = async (formData: FormData) => {
-    "use server";
+  const onSell = async () => {
     try {
       setLoading(true)
       await prismadb.sell.create({
@@ -81,10 +80,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         onConfirm={onConfirm}
         loading={loading}
       />
-      <form action={onSell}>
-        <input type="text" name="id" value={data.id} className="hidden"/>
-        <Button type="submit" disabled={loading}>sell</Button>
-      </form>
+        <Button type="submit" disabled={loading} onClick={onSell}>sell</Button>
     </>
   );
 };
