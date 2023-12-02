@@ -60,7 +60,23 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           }
         }
       })
+      const Oproduct = await prismadb.product.findUnique({
+        where: {
+          id: data.id
+        },
+      });
+      if (Oproduct) {
+        await prismadb.product.update({
+          where: {
+            id: data.id
+          },
+          data: {
+            stockQuantity: Oproduct?.stockQuantity - 1
+          },
+        });
+      }
       toast.success("SOLD");
+      router.refresh()
     } catch (error) {
       console.log('====================================');
       console.log(error);
