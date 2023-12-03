@@ -11,11 +11,7 @@ export const getGraphRevenue = async (storeId: string): Promise<GraphData[]> => 
       storeId,
     },
     include: {
-      sellItems: {
-        include: {
-          product: true,
-        },
-      },
+      sellItems: true
     },
   });
 
