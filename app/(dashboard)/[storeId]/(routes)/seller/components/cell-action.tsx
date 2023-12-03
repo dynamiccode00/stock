@@ -100,9 +100,8 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem className="bg-transparent">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSell)} className="">
+              <form onSubmit={form.handleSubmit(onSell)} className="flex flex-col gap-2">
                 <FormField
                   control={form.control}
                   name="price"
@@ -140,7 +139,6 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
                 </Button>
               </form>
             </Form>
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
