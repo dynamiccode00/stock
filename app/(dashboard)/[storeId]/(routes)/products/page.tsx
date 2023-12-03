@@ -5,12 +5,19 @@ import { formatter } from "@/lib/utils";
 
 import { ProductsClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const ProductsPage = async ({
   params
 }: {
   params: { storeId: string }
 }) => {
+  const { userId,user } = auth();
+  
+  if (user?.username != 'admin') {
+    redirect(`/${params.storeId}/products`);
+  }
   const products = await prismadb.product.findMany({
     where: {
       storeId: params.storeId
