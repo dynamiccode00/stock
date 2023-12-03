@@ -20,7 +20,6 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
   params
 }) => {
   const { userId,user } = auth();
-  console.log(user?.username);
   
   if (user?.username != 'admin') {
     redirect(`/${params.storeId}/seller`);
