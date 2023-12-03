@@ -22,7 +22,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
   const { userId,user } = auth();
   
   if (user?.username != 'admin') {
-    redirect(`/${params.storeId}/products`);
+    redirect(`/${params.storeId}/seller`);
   }
   const stockCount = await getStockCount(params.storeId);
   const graphRevenue = await getGraphRevenue(params.storeId);

@@ -16,7 +16,7 @@ const ProductsPage = async ({
   const { userId,user } = auth();
   
   if (user?.username != 'admin') {
-    redirect(`/${params.storeId}/products`);
+    redirect(`/${params.storeId}/seller`);
   }
   const products = await prismadb.product.findMany({
     where: {
