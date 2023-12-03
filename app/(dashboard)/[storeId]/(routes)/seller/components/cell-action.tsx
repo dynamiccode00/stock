@@ -100,11 +100,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/products/${data.id}`)
-            }
-          >
+          <DropdownMenuItem className="bg-transparent">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSell)} className="">
                 <FormField
