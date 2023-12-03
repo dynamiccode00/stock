@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { ApiList } from "@/components/ui/api-list";
 
 import { ProductColumn, columns } from "./columns";
+import { auth } from "@clerk/nextjs";
 
 interface ProductsClientProps {
   data: ProductColumn[];
@@ -21,6 +22,9 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({
   const params = useParams();
   const router = useRouter();
 
+console.log(
+  auth().user
+);
   return (
     <> 
       <div className="flex items-center justify-between">
