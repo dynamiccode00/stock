@@ -3,18 +3,14 @@
 import prismadb from "@/lib/prismadb";
 
  
-export async function myAction(storeId: any,id: any) {
+export async function myAction(storeId: any,id: any,form: any) {
     try {
         await prismadb.sell.create({
           data: {
             storeId: storeId,
             sellItems:{
               create:{
-                product: {
-                  connect: {
-                    id
-                  }
-                }
+                price: form.price * form.qty
               }
             }
           }
@@ -30,7 +26,7 @@ export async function myAction(storeId: any,id: any) {
               id
             },
             data: {
-              stockQuantity: Oproduct?.stockQuantity - 1
+              stockQuantity: Oproduct?.stockQuantity - form.qty
             },
           });
         }

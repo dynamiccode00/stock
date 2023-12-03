@@ -27,7 +27,6 @@ model Product {
   stockQuantity Int
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
-  SellItem      SellItem[]
 
   @@index([storeId])
 }
@@ -48,9 +47,6 @@ model SellItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   sellId    String  @db.ObjectId
   sell      Sell    @relation(fields: [sellId], references: [id])
-  productId String  @db.ObjectId
-  product   Product @relation(fields: [productId], references: [id])
-
+  price Int
   @@index([sellId])
-  @@index([productId])
 }

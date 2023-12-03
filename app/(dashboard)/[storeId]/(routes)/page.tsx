@@ -7,6 +7,8 @@ import { Heading } from "@/components/ui/heading";
 import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
 import { getGraphRevenue } from "@/actions/get-graph-revenue";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 interface DashboardPageProps {
   params: {
@@ -17,6 +19,11 @@ interface DashboardPageProps {
 const DashboardPage: React.FC<DashboardPageProps> = async ({ 
   params
 }) => {
+  const { userId,user } = auth();
+  
+  if (userId != 'user_2YxJdWWmZfzFMbi192obx0KMBbY') {
+    redirect(`/${params.storeId}/seller`);
+  }
   const stockCount = await getStockCount(params.storeId);
   const graphRevenue = await getGraphRevenue(params.storeId);
 
