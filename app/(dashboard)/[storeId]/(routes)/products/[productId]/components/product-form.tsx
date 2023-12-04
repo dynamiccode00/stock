@@ -27,9 +27,11 @@ import { AlertModal } from "@/components/modals/alert-modal"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import ImageUpload from "@/components/ui/image-upload"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Textarea } from "@/components/ui/textarea"
 
 const formSchema = z.object({
   name: z.string().min(1),
+  description: z.string().min(1).optional(),
   price: z.coerce.number().min(1),
   stockQuantity: z.coerce.number().min(1),
 });
@@ -59,6 +61,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
   } : {
     name: '',
+    description: ``,
     price: 0,
     stockQuantity: 0,
   }
@@ -147,6 +150,19 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input type="number" disabled={loading} placeholder="9.99" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea disabled={loading} placeholder="Color: white" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

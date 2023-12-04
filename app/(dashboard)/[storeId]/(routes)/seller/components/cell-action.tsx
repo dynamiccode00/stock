@@ -102,7 +102,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSell)} className="flex flex-col gap-2">
-                <FormField
+                <FormField 
                   control={form.control}
                   name="price"
                   render={({ field }) => (

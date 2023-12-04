@@ -15,18 +15,19 @@ model Store {
   products  Product[] @relation("StoreToProduct")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Sell      Sell[] @relation("StoreToSell")
+  Sell      Sell[]    @relation("StoreToSell")
 }
 
 model Product {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   storeId       String
-  store         Store      @relation("StoreToProduct", fields: [storeId], references: [id])
+  store         Store    @relation("StoreToProduct", fields: [storeId], references: [id])
   name          String
   price         Int
+  description   String?
   stockQuantity Int
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([storeId])
 }
@@ -44,9 +45,10 @@ model Sell {
 
 // Intermediary for a many-to-many relationship
 model SellItem {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  sellId    String  @db.ObjectId
-  sell      Sell    @relation(fields: [sellId], references: [id])
-  price Int
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  sellId String @db.ObjectId
+  sell   Sell   @relation(fields: [sellId], references: [id])
+  price  Int
+
   @@index([sellId])
 }
