@@ -31,7 +31,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 const formSchema = z.object({
   name: z.string().min(1),
-  description: z.string().min(1).optional(),
+  description: z.string().min(1),
   price: z.coerce.number().min(1),
   stockQuantity: z.coerce.number().min(1),
 });
@@ -61,7 +61,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
   } : {
     name: '',
-    description: ``,
+    description: '',
     price: 0,
     stockQuantity: 0,
   }

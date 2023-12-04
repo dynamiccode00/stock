@@ -24,6 +24,9 @@ export async function POST(
     if (!stockQuantity) {
       return new NextResponse("stockQuantity id is required", { status: 400 });
     }
+    if (!description) {
+      return new NextResponse("description id is required", { status: 400 });
+    }
 
     if (!params.storeId) {
       return new NextResponse("Store id is required", { status: 400 });
