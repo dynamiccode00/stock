@@ -46,7 +46,7 @@ export async function POST(
     const product = await prismadb.product.create({
       data: {
         name,
-        description,
+        description: description,
         price,
         stockQuantity,
         storeId: params.storeId,
