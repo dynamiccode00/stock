@@ -3,6 +3,8 @@ import { auth } from '@clerk/nextjs';
 
 import prismadb from '@/lib/prismadb';
 
+export const revalidate = 1
+
 export default async function SetupLayout({
   children,
 }: {
