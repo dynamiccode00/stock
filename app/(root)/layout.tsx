@@ -2,6 +2,7 @@ import { redirect, } from 'next/navigation';
 import { auth } from '@clerk/nextjs';
 
 import prismadb from '@/lib/prismadb';
+import { revalidatePath } from 'next/cache';
 
 export const revalidate = 1
 
@@ -23,6 +24,7 @@ export default async function SetupLayout({
   });
 
   if (store) {
+    revalidatePath('/')
     redirect(`/${store.id}`);
   };
 
