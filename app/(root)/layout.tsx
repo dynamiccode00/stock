@@ -14,11 +14,7 @@ export default async function SetupLayout({
     redirect('/sign-in');
   }
 
-  const store = await prismadb.store.findFirst({
-    where: {
-      userId,
-    }
-  });
+  const store = await prismadb.store.findFirst();
 
   if (userId == 'user_2Z2My4D98pL0k77nSDIukRdX50R' && store) {
     redirect(`/${store?.id}/seller`);
