@@ -20,10 +20,10 @@ export default async function SetupLayout({
     }
   });
 
-  if (user?.username == 'seller' && store) {
+  if (user?.username == 'seller' && store?.id) {
     redirect(`/${store?.id}/seller`);
   };
-  if (user?.username == 'admin' && store) {
+  if (user?.username == 'admin' && store?.id) {
     redirect(`/${store?.id}`);
   };
 
