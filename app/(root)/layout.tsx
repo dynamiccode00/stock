@@ -21,7 +21,7 @@ export default async function SetupLayout({
     }
   });
 
-  if (userId == 'user_2Z2My4D98pL0k77nSDIukRdX50R' && store) {
+  if (userId == 'user_2ZFkhqgvmyN8kO9H7HyhS8FRYIN' && store) {
     redirect(`/${store?.id}/seller`);
   };
   if (userId == 'user_2YxJdWWmZfzFMbi192obx0KMBbY' && store) {
