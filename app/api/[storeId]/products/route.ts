@@ -46,7 +46,7 @@ export async function POST(
     const product = await prismadb.product.create({
       data: {
         name,
-        description,
+        description: description,
         price,
         stockQuantity,
         storeId: params.storeId,
@@ -56,7 +56,7 @@ export async function POST(
     return NextResponse.json(product);
   } catch (error) {
     console.log('[PRODUCTS_POST]', error);
-    return new NextResponse("Internal error", { status: 500 });
+    return new NextResponse(`Internal error ${error}`, { status: 500 });
   }
 };
 
@@ -81,8 +81,8 @@ export async function GET(
     });
   
     return NextResponse.json(products);
-  } catch (error) {
+  } catch (error: any) {
     console.log('[PRODUCTS_GET]', error);
-    return new NextResponse("Internal error", { status: 500 });
+    return new NextResponse(`Internal error ${error.message}`, { status: 500 });
   }
 };
