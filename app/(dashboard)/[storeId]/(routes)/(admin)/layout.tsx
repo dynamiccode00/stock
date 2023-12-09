@@ -18,7 +18,7 @@ export default async function SetupLayout({
 }) {
   const { userId, user } = auth();
 
-  if (user?.username == "seller") {
+  if (userId == 'user_2ZFkhqgvmyN8kO9H7HyhS8FRYIN') {
     redirect(`/${params.storeId}/seller`);
   }
 
